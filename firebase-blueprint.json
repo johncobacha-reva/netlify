@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "MarketDeal": {
+      "title": "Market Deal",
+      "description": "Information about a specific retail or commercial property deal in Inland Empire.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the deal." },
+        "address": { "type": "string", "description": "Property address." },
+        "city": { "type": "string", "description": "City in Inland Empire (e.g., Riverside, San Bernardino)." },
+        "propertyType": { "type": "string", "enum": ["Retail", "Industrial", "Office", "Multi-family", "Land"], "description": "Type of commercial property." },
+        "price": { "type": "number", "description": "Sale or listing price." },
+        "squareFootage": { "type": "number", "description": "Total square footage of the property." },
+        "capRate": { "type": "number", "description": "Capitalization rate (percentage)." },
+        "occupancy": { "type": "number", "description": "Current occupancy percentage." },
+        "yearBuilt": { "type": "number", "description": "Year the property was constructed." },
+        "status": { "type": "string", "enum": ["Active", "Pending", "Closed"], "description": "Current status of the deal." },
+        "notes": { "type": "string", "description": "Additional notes or analysis." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the deal was added to the system." },
+        "userId": { "type": "string", "description": "The UID of the user who added the deal." }
+      },
+      "required": ["address", "city", "propertyType", "price", "squareFootage", "createdAt", "userId"]
+    },
+    "MarketTrend": {
+      "title": "Market Trend",
+      "description": "Historical market statistics for Inland Empire retail/commercial real estate.",
+      "type": "object",
+      "properties": {
+        "month": { "type": "string", "description": "Month/Year of the data point (e.g., '2024-01')." },
+        "avgPricePerSqFt": { "type": "number", "description": "Average price per square foot for the period." },
+        "avgCapRate": { "type": "number", "description": "Average capitalization rate for the period." },
+        "vacancyRate": { "type": "number", "description": "Market vacancy rate for the period." },
+        "inventoryCount": { "type": "number", "description": "Total properties active in the market." }
+      },
+      "required": ["month", "avgPricePerSqFt", "avgCapRate", "vacancyRate"]
+    }
+  },
+  "firestore": {
+    "deals": {
+      "schema": "MarketDeal",
+      "description": "Collection of commercial property deals."
+    },
+    "marketTrends": {
+      "schema": "MarketTrend",
+      "description": "Collection of historical Inland Empire market trends."
+    }
+  }
+}
